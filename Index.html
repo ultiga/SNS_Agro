@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SNS Agro Data Entry System</title>
+  <style>
+    :root {
+      --primary-blue: #0d47a1;
+      --secondary-blue: #1976d2;
+      --light-blue-bg: #f0f7ff;
+      --border-blue: #bbdefb;
+      --white: #ffffff;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --danger: #dc2626;
+      --success: #16a34a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-blue-bg);
+      color: var(--text-dark);
+      padding: 24px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .form-card {
+      background: var(--white);
+      max-width: 650px;
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(13, 71, 161, 0.08);
+      border: 1px solid var(--border-blue);
+      overflow: hidden;
+    }
+
+    .header-banner {
+      background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+      color: var(--white);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .header-banner h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .header-banner p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    form {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--primary-blue);
+    }
+
+    .required {
+      color: var(--danger);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      transition: all 0.2s ease-in-out;
+      background-color: #fafbfc;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--secondary-blue);
+      box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.15);
+      background-color: var(--white);
+    }
+
+    input:read-only {
+      background-color: #f1f5f9;
+      cursor: not-allowed;
+      border-color: #e2e8f0;
+    }
+
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 500px) {
+      .row-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .char-counter {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: right;
+      margin-top: 2px;
+    }
+
+    .btn-submit {
+      background-color: var(--primary-blue);
+      color: var(--white);
+      border: none;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+      background-color: #0b3c8a;
+    }
+
+    .btn-submit:disabled {
+      background-color: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    .alert-box {
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: none;
+      margin-bottom: 10px;
+    }
+
+    .alert-success {
+      background-color: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .alert-error {
+      background-color: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .spinner {
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid var(--white);
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      animation: spin 0.7s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-card">
+    <div class="header-banner">
+      <h1>SNS Agro Data Entry System</h1>
+      <p>Please enter your agricultural task details accurately</p>
+    </div>
+
+    <form id="agroForm">
+      <div id="alertBox" class="alert-box"></div>
+
+      <!-- 1. Entry by -->
+      <div class="form-group">
+        <label for="entryBy">Entry By (Chrome / Email Address) <span class="required">*</span></label>
+        <input 
+          type="email" 
+          id="entryBy" 
+          name="entryBy" 
+          autocomplete="email" 
+          placeholder="your.email@example.com" 
+          required 
+        />
+      </div>
+
+      <!-- 2. Entry Date and Time (Auto populated & live) -->
+      <div class="form-group">
+        <label for="entryDateTime">Entry Date and Time</label>
+        <input type="text" id="entryDateTime" readonly placeholder="Auto-generated on submission" />
+      </div>
+
+      <!-- 3. Job Complete Date -->
+      <div class="form-group">
+        <label for="jobCompleteDate">Job Complete Date <span class="required">*</span></label>
+        <input type="date" id="jobCompleteDate" name="jobCompleteDate" required />
+      </div>
+
+      <!-- 4 & 6. Job Type & Unit -->
+      <div class="row-2">
+        <div class="form-group">
+          <label for="jobType">Job Type <span class="required">*</span></label>
+          <select id="jobType" name="jobType" required>
+            <option value="">Loading job types...</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="unit">Unit (Auto)</label>
+          <input type="text" id="unit" name="unit" readonly placeholder="Auto-populated" required />
+        </div>
+      </div>
+
+      <!-- 5. Quantity -->
+      <div class="form-group">
+        <label for="quantity">Quantity <span class="required">*</span></label>
+        <input 
+          type="number" 
+          id="quantity" 
+          name="quantity" 
+          step="any" 
+          min="0.001" 
+          placeholder="Enter numeric quantity" 
+          required 
+        />
+      </div>
+
+      <!-- 7. Job Done By -->
+      <div class="form-group">
+        <label for="jobDoneBy">Job Done By <span class="required">*</span></label>
+        <select id="jobDoneBy" name="jobDoneBy" required>
+          <option value="">Loading employee names...</option>
+        </select>
+      </div>
+
+      <!-- 8. Remark -->
+      <div class="form-group">
+        <label for="remark">Remark (Max 200 Characters)</label>
+        <textarea 
+          id="remark" 
+          name="remark" 
+          rows="3" 
+          maxlength="200" 
+          placeholder="Enter additional remarks or notes..."
+        ></textarea>
+        <div class="char-counter"><span id="charCount">0</span>/200 characters</div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span id="btnText">Submit Entry</span>
+      </button>
+    </form>
+  </div>
+
+  <script>
+    // -------------------------------------------------------------
+    // REPLACE THIS WITH YOUR DEPLOYED APPS SCRIPT WEB APP URL:
+    // -------------------------------------------------------------
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxZP34MbuKXGtqBKkLoexX44y5mfpUFhV5O57UZIZnz_u5wzTfoNVzUJAhQZ39-n0AM/exec";
+
+    let jobMap = {};
+
+    // Live Clock display for Entry Date and Time
+    function updateLiveClock() {
+      const now = new Date();
+      const formatted = now.toLocaleString("en-GB", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      });
+      document.getElementById("entryDateTime").value = formatted;
+    }
+    setInterval(updateLiveClock, 1000);
+    updateLiveClock();
+
+    // Remember email locally
+    const emailInput = document.getElementById("entryBy");
+    const savedEmail = localStorage.getItem("sns_last_user_email");
+    if (savedEmail) {
+      emailInput.value = savedEmail;
+    }
+
+    // Remark Character Counter
+    const remarkField = document.getElementById("remark");
+    const charCount = document.getElementById("charCount");
+    remarkField.addEventListener("input", () => {
+      charCount.textContent = remarkField.value.length;
+    });
+
+    // Fetch Job Types & Employee list on load
+    async function loadDropdowns() {
+      const jobSelect = document.getElementById("jobType");
+      const empSelect = document.getElementById("jobDoneBy");
+
+      try {
+        const response = await fetch(`${SCRIPT_URL}?action=getInitialData`);
+        const result = await response.json();
+
+        if (result.status === "success") {
+          // Populate Job Types
+          jobSelect.innerHTML = '<option value="">-- Select Job Type --</option>';
+          result.jobs.forEach(item => {
+            jobMap[item.job] = item.unit;
+            const opt = document.createElement("option");
+            opt.value = item.job;
+            opt.textContent = item.job;
+            jobSelect.appendChild(opt);
+          });
+
+          // Populate Employees
+          empSelect.innerHTML = '<option value="">-- Select Employee --</option>';
+          result.employees.forEach(emp => {
+            const opt = document.createElement("option");
+            opt.value = emp;
+            opt.textContent = emp;
+            empSelect.appendChild(opt);
+          });
+        } else {
+          showAlert("Error loading dropdown data: " + result.message, "error");
+        }
+      } catch (err) {
+        showAlert("Failed to connect to Google Sheets backend. Ensure Web App URL is correctly set.", "error");
+      }
+    }
+
+    // Auto-populate Unit upon selecting Job Type
+    document.getElementById("jobType").addEventListener("change", (e) => {
+      const selected = e.target.value;
+      const unitField = document.getElementById("unit");
+      unitField.value = jobMap[selected] || "";
+    });
+
+    // Form Submission
+    const form = document.getElementById("agroForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const btnText = document.getElementById("btnText");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = emailInput.value.trim();
+      if (!email) {
+        showAlert("Please specify the Entry By email address.", "error");
+        return;
+      }
+      localStorage.setItem("sns_last_user_email", email);
+
+      // Loading state
+      submitBtn.disabled = true;
+      btnText.innerHTML = '<span class="spinner"></span> Processing...';
+      hideAlert();
+
+      const payload = {
+        entryBy: email,
+        jobCompleteDate: document.getElementById("jobCompleteDate").value,
+        jobType: document.getElementById("jobType").value,
+        quantity: document.getElementById("quantity").value,
+        unit: document.getElementById("unit").value,
+        jobDoneBy: document.getElementById("jobDoneBy").value,
+        remark: remarkField.value.trim()
+      };
+
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
+        const res = await response.json();
+
+        if (res.status === "success") {
+          showAlert("Submission successful! Email sent and data recorded in Google Sheets.", "success");
+          form.reset();
+          emailInput.value = email; // Retain current user email
+          document.getElementById("unit").value = "";
+          charCount.textContent = "0";
+        } else {
+          showAlert("Submission error: " + res.message, "error");
+        }
+      } catch (err) {
+        showAlert("Failed to submit entry. Please verify internet connection and backend deployment.", "error");
+      } finally {
+        submitBtn.disabled = false;
+        btnText.textContent = "Submit Entry";
+      }
+    });
+
+    function showAlert(msg, type) {
+      const box = document.getElementById("alertBox");
+      box.textContent = msg;
+      box.className = "alert-box " + (type === "success" ? "alert-success" : "alert-error");
+      box.style.display = "block";
+    }
+
+    function hideAlert() {
+      const box = document.getElementById("alertBox");
+      box.style.display = "none";
+    }
+
+    // Initialize dropdowns
+    loadDropdowns();
+  </script>
+</body>
+</html>
