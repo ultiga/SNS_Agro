@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Designed by ULTIGA | RP LABS | Lock -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,39 +12,48 @@
     }
 
     body {
-      background-color: #000;
-      background-image: url("Logo.jpeg");
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      color: #e8e8e8;
-      font-family: "Aptos", system-ui, -apple-system, sans-serif;
-      padding: 2.5rem 1.5rem;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+      background-color: #000;
+      color: #fff;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .container {
-      width: 100%;
-      max-width: 650px;
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 2.5rem;
+      width: 100%;
+      max-width: 600px;
     }
 
-    h1 {
+    .header {
       text-align: center;
+    }
+
+    .header img {
+      width: 190px;
+      height: 190px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+
+    .header h1 {
       font-size: 2rem;
       color: #f6c6ad;
+      letter-spacing: 0.4pt;
       text-decoration: underline;
-      letter-spacing: 0.5px;
     }
 
     .item-list {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.5rem;
+      width: 100%;
     }
 
     .item-card {
@@ -55,8 +63,6 @@
     }
 
     .item-card img {
-      width: 90px;
-      height: 90px;
       object-fit: cover;
       border-radius: 6px;
       flex-shrink: 0;
@@ -69,17 +75,16 @@
     }
 
     .title-link {
-      font-size: 1.55rem;
+      font-size: 1.25rem;
+      font-weight: bold;
       color: #e8e8e8;
       text-decoration: underline;
-      font-weight: 600;
     }
 
     .admin-link {
-      font-size: 1.35rem;
+      font-size: 1rem;
       color: #2e9e3f;
       text-decoration: underline;
-      font-weight: 500;
     }
 
     .title-link:hover,
@@ -91,58 +96,84 @@
 <body>
 
   <main class="container">
-    <h1>SNS Agro Enterprise Entry System</h1>
+    <header class="header">
+      <img src="Logo.jpeg" alt="SNS Agro Enterprise Logo">
+      <h1>SNS Agro Enterprise Entry System</h1>
+    </header>
 
-    <div class="item-list">
+    <section class="item-list">
+      <!-- Data Entry -->
       <article class="item-card">
-        <img src="Cop.jpeg" alt="Logo">
+        <img src="sawit.jpg" width="91" height="86" alt="Data Entry">
         <div class="item-content">
-          <a class="title-link" href="https://ultiga.github.io/SNS_Agro/entry.html" target="_blank" rel="noopener noreferrer">Data Entry</a>
-          <a class="admin-link" href="https://ultiga.github.io/SNS_Agro/entry.html" target="_blank" rel="noopener noreferrer">Click to open entry Page</a>
+          <a class="title-link" href="https://ultiga.github.io/SNS_Agro/entry.html" target="_blank" rel="noopener">Data Entry</a>
+          <a class="admin-link" href="https://ultiga.github.io/SNS_Agro/entry.html" target="_blank" rel="noopener">Click to open entry Page</a>
         </div>
       </article>
 
+      <!-- Open/Edit Job Data -->
       <article class="item-card">
-        <img src="Edit.jpeg" alt="Open/Edit Job Data">
+        <img src="edit.png" width="82" height="82" alt="Job Data">
         <div class="item-content">
-          <a class="title-link" href="https://ultiga.github.io/Dashboard/static.html" target="_blank" rel="noopener noreferrer">Open/Edit Job Data</a>
-          <a class="admin-link" href="https://ultiga.github.io/Dashboard/Dashboard.html" target="_blank" rel="noopener noreferrer">Click to open</a>
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1nwUCnkVVr7Js7l0xDuieFmzYyxP1UOWaU2UerED5SN8/edit?usp=sharing" target="_blank" rel="noopener">Open/Edit Job Data</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1nwUCnkVVr7Js7l0xDuieFmzYyxP1UOWaU2UerED5SN8/edit?usp=sharing" target="_blank" rel="noopener">Click to open</a>
         </div>
       </article>
 
+
+      <!-- Open/Edit Emp Data -->
       <article class="item-card">
-        <img src="NHMEGA.png" alt="Kolam NHMEGA Logo">
+        <img src="emp.png" width="73" height="73" alt="Employee Data">
         <div class="item-content">
-          <a class="title-link" href="https://ultiga.github.io/Dashboard/static.html" target="_blank" rel="noopener noreferrer">Kolam NHMEGA</a>
-          <a class="admin-link" href="https://ultiga.github.io/Dashboard/Dashboard.html" target="_blank" rel="noopener noreferrer">Dashboard Admin Page</a>
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1uplB8P24jLqcKOMHUYEevVhvWa6h1by7krrgpyuK4nY/edit?usp=sharing" target="_blank" rel="noopener">Open/Edit Emp Data</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1uplB8P24jLqcKOMHUYEevVhvWa6h1by7krrgpyuK4nY/edit?usp=sharing" target="_blank" rel="noopener">Click to Open</a>
         </div>
       </article>
 
+
+      <!-- Open/Edit Job Type -->
       <article class="item-card">
-        <img src="Kampar.jpg" alt="Kolam Kampar Logo">
+        <img src="edit1.png" width="54" height="54" alt="Job Type">
         <div class="item-content">
-          <a class="title-link" href="https://ultiga.github.io/Dashboard/static.html" target="_blank" rel="noopener noreferrer">Kolam Kampar</a>
-          <a class="admin-link" href="https://ultiga.github.io/Dashboard/Dashboard.html" target="_blank" rel="noopener noreferrer">Dashboard Admin Page</a>
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1xyenjLEUoT-smBgtpKSy6QvJjDz8JbikQL_dyMVHvlA/edit?usp=sharing" target="_blank" rel="noopener">Open/Edit Job Type</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1xyenjLEUoT-smBgtpKSy6QvJjDz8JbikQL_dyMVHvlA/edit?usp=sharing" target="_blank" rel="noopener">Click to Open</a>
         </div>
       </article>
 
+      <!-- Open/Edit Admin List -->
       <article class="item-card">
-        <img src="LangkapOld.jpg" alt="Kolam Langkap Old Logo">
+        <img src="edit2.png" width="58" height="58" alt="Admin List">
         <div class="item-content">
-          <a class="title-link" href="https://ultiga.github.io/Dashboard/static.html" target="_blank" rel="noopener noreferrer">Kolam Langkap (Old)</a>
-          <a class="admin-link" href="https://ultiga.github.io/Dashboard/Dashboard.html" target="_blank" rel="noopener noreferrer">Dashboard Admin Page</a>
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1zNBkZ5ihOWBnp-SJzqCUZTc7W6FmFPo6S864MnA9u30/edit?usp=sharing" target="_blank" rel="noopener">Open/Edit Admin List</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1zNBkZ5ihOWBnp-SJzqCUZTc7W6FmFPo6S864MnA9u30/edit?usp=sharing" target="_blank" rel="noopener">Click to Open</a>
         </div>
       </article>
 
+      <!-- Reporting -->
       <article class="item-card">
-        <img src="RPLABS.jpg" alt="Kolam RPLABS Logo">
+        <img src="report.png" width="71" height="71" alt="Reporting">
         <div class="item-content">
-          <a class="title-link" href="https://ultiga.github.io/Dashboard/static.html" target="_blank" rel="noopener noreferrer">Kolam RPLABS</a>
-          <a class="admin-link" href="https://ultiga.github.io/Dashboard/Dashboard.html" target="_blank" rel="noopener noreferrer">Dashboard Admin Page</a>
+          <a class="title-link" href="https://ultiga.github.io/" target="_blank" rel="noopener">Reporting</a>
+          <a class="admin-link" href="https://ultiga.github.io/" target="_blank" rel="noopener">Click to Open</a>
         </div>
       </article>
-      
-    </div>
+
+ <!-- Printing -->
+      <article class="item-card">
+        <img src="print.jpeg" width="71" height="71" alt="Print">
+        <div class="item-content">
+          <a class="title-link" href="https://ultiga.github.io/Dashboard/static.html" target="_blank" rel="noopener">Printing</a>
+          <a class="admin-link" href="https://ultiga.github.io/" target="_blank" rel="noopener">Click to Open</a>
+        </div>
+      </article>
+
+
+
+
+
+
+
+    </section>
   </main>
 
 </body>
