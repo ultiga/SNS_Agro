@@ -2,8 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>SNS Agro Enterprise Reporting Menu -- By RP Tech</title>
+
+  <!-- Mobile Chrome Fullscreen & Web App Capabilities -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#000000">
+
+  <!-- iOS Safari Compatibility (if ever viewed on iPhone) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Inline Web App Manifest to launch in standalone mode -->
+  <link rel="manifest" href="data:application/manifest+json;utf8,{
+    %22name%22:%20%22SNS%20Agro%20Enterprise%22,
+    %22short_name%22:%20%22SNS%20Agro%22,
+    %22start_url%22:%20%22.%22,
+    %22display%22:%20%22standalone%22,
+    %22background_color%22:%20%22%23000000%22,
+    %22theme_color%22:%20%22%23000000%22
+  }">
+
   <style>
     * {
       box-sizing: border-box;
@@ -13,6 +32,7 @@
 
     body {
       min-height: 100vh;
+      min-height: 100dvh; /* Adapts dynamically to mobile viewport address bar */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -26,7 +46,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
       width: 100%;
       max-width: 500px;
       text-align: center;
@@ -94,6 +114,22 @@
       text-decoration: underline;
       filter: brightness(1.2);
     }
+
+    /* Optional Fullscreen Button */
+    .fullscreen-btn {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      color: #aaa;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .fullscreen-btn:active {
+      background: #2a2a2a;
+    }
   </style>
 </head>
 <body>
@@ -103,6 +139,7 @@
       <img src="Logo.jpeg" alt="SNS Agro Enterprise Logo">
       <h1>SNS Agro Enterprise Entry System</h1>
       <h2>Reporting Menu</h2>
+      <button class="fullscreen-btn" onclick="toggleFullScreen()">⛶ Fullscreen Mode</button>
     </header>
 
     <section class="report-list">
@@ -133,5 +170,18 @@
     </section>
   </main>
 
+  <script>
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.warn("Fullscreen request was rejected: ", err);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+  </script>
 </body>
 </html>
