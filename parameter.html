@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- viewport-fit=cover allows content to fill edge-to-edge past notches -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <!-- Mobile Web App & Chrome Fullscreen Meta Tags -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#000000">
+
+  <title>SNS Agro Parameter Setting -- By RP Tech</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      /* 100dvh accounts for dynamic address bar resizing in mobile Chrome */
+      min-height: 100dvh;
+      background-color: #000;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* env(safe-area-inset-*) prevents clipping behind notches and nav bars */
+      padding: calc(2rem + env(safe-area-inset-top, 0px)) 
+               calc(1rem + env(safe-area-inset-right, 0px)) 
+               calc(2rem + env(safe-area-inset-bottom, 0px)) 
+               calc(1rem + env(safe-area-inset-left, 0px));
+      color: #fff;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    .header img {
+      width: 190px;
+      height: 190px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      color: #f6c6ad;
+      letter-spacing: 0.4pt;
+      text-decoration: underline;
+    }
+
+    /* Controls wrapper to place Back and Fullscreen buttons side by side */
+    .action-controls {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .action-btn {
+      background-color: #1f1f1f;
+      border: 1px solid #444;
+      color: #f6c6ad;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: background-color 0.2s, filter 0.2s;
+    }
+
+    .action-btn:hover {
+      background-color: #333;
+      filter: brightness(1.1);
+    }
+
+    .item-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+    }
+
+    .item-card {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .item-card img {
+      object-fit: cover;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .item-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .title-link {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #e8e8e8;
+      text-decoration: underline;
+    }
+
+    .admin-link {
+      font-size: 1rem;
+      color: #2e9e3f;
+      text-decoration: underline;
+    }
+
+    .title-link:hover,
+    .admin-link:hover {
+      filter: brightness(1.2);
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <header class="header">
+      <img src="Logo.jpeg" alt="SNS Agro Enterprise Logo">
+      <h1>SNS Agro Enterprise Entry System</h1>
+	<h1>Parameter Menu</h1>
+    </header>
+
+    <!-- Controls Row: Back button placed to the left of Fullscreen button -->
+    <div class="action-controls">
+      <button type="button" class="action-btn" onclick="history.back()" aria-label="Go back">
+        &#8592; Back
+      </button>
+      <button type="button" class="action-btn" onclick="toggleFullScreen()">
+        ⛶ Fullscreen Mode
+      </button>
+    </div>
+
+    <section class="item-list">
+      
+      <!-- Open/Edit Job Data -->
+      <article class="item-card">
+        <img src="edit.png" width="82" height="82" alt="Job Data">
+        <div class="item-content">
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1nwUCnkVVr7Js7l0xDuieFmzYyxP1UOWaU2UerED5SN8/edit?usp=sharing">Open/Edit Job Data</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1nwUCnkVVr7Js7l0xDuieFmzYyxP1UOWaU2UerED5SN8/edit?usp=sharing">Click to open</a>
+        </div>
+      </article>
+
+      <!-- Open/Edit Emp Data -->
+      <article class="item-card">
+        <img src="emp.png" width="73" height="73" alt="Employee Data">
+        <div class="item-content">
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1uplB8P24jLqcKOMHUYEevVhvWa6h1by7krrgpyuK4nY/edit?usp=sharing">Open/Edit Emp Data</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1uplB8P24jLqcKOMHUYEevVhvWa6h1by7krrgpyuK4nY/edit?usp=sharing">Click to Open</a>
+        </div>
+      </article>
+
+      <!-- Open/Edit Upah Data -->
+      <article class="item-card">
+        <img src="payroll.png" width="73" height="73" alt="Upah Data">
+        <div class="item-content">
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1M0uDvPOld7sujvFT5p5XhYD8FWIM0r07JpUJfCP-MnQ/edit?usp=sharing">Open/Edit Upah Data</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1M0uDvPOld7sujvFT5p5XhYD8FWIM0r07JpUJfCP-MnQ/edit?usp=sharing">Click to Open</a>
+        </div>
+      </article>
+
+      <!-- Open/Edit Job Type -->
+      <article class="item-card">
+        <img src="edit1.png" width="54" height="54" alt="Job Type">
+        <div class="item-content">
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1xyenjLEUoT-smBgtpKSy6QvJjDz8JbikQL_dyMVHvlA/edit?usp=sharing">Open/Edit Job Type</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1xyenjLEUoT-smBgtpKSy6QvJjDz8JbikQL_dyMVHvlA/edit?usp=sharing">Click to Open</a>
+        </div>
+      </article>
+
+      <!-- Open/Edit Admin List -->
+      <article class="item-card">
+        <img src="edit2.png" width="58" height="58" alt="Admin List">
+        <div class="item-content">
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1zNBkZ5ihOWBnp-SJzqCUZTc7W6FmFPo6S864MnA9u30/edit?usp=sharing">Open/Edit Admin List</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1zNBkZ5ihOWBnp-SJzqCUZTc7W6FmFPo6S864MnA9u30/edit?usp=sharing">Click to Open</a>
+        </div>
+      </article>
+
+      
+    </section>
+  </main>
+
+  <script>
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch((err) => {
+          console.warn(`Fullscreen request failed: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+  </script>
+</body>
+</html>
