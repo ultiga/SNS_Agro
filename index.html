@@ -27,6 +27,7 @@
     }
 
     body {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -37,6 +38,31 @@
                calc(1rem + env(safe-area-inset-left, 0px));
       color: #fff;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Fixed Back Button at Top Left */
+    .back-btn {
+      position: fixed;
+      top: calc(1rem + env(safe-area-inset-top, 0px));
+      left: calc(1rem + env(safe-area-inset-left, 0px));
+      background-color: #1f1f1f;
+      border: 1px solid #444;
+      color: #f6c6ad;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      z-index: 1000;
+      transition: background-color 0.2s, filter 0.2s;
+    }
+
+    .back-btn:hover {
+      background-color: #333;
+      filter: brightness(1.1);
     }
 
     .container {
@@ -123,6 +149,11 @@
 </head>
 <body>
 
+  <!-- Top-left Back Button -->
+  <button type="button" class="back-btn" onclick="history.back()" aria-label="Go back">
+    &#8592; Back
+  </button>
+
   <main class="container">
     <header class="header">
       <img src="Logo.jpeg" alt="SNS Agro Enterprise Logo">
@@ -137,8 +168,8 @@
       <article class="item-card">
         <img src="sawit.jpg" width="91" height="86" alt="Data Entry">
         <div class="item-content">
-          <a class="title-link" href="https://ultiga.github.io/SNS_Agro/entry.html" target="_blank" rel="noopener">Data Entry</a>
-          <a class="admin-link" href="https://ultiga.github.io/SNS_Agro/entry.html" target="_blank" rel="noopener">Click to open entry Page</a>
+          <a class="title-link" href="https://ultiga.github.io/SNS_Agro/entry.html">Data Entry</a>
+          <a class="admin-link" href="https://ultiga.github.io/SNS_Agro/entry.html">Click to open entry Page</a>
         </div>
       </article>
 
@@ -146,18 +177,17 @@
       <article class="item-card">
         <img src="report.png" width="71" height="71" alt="Reporting">
         <div class="item-content">
-          <a class="title-link" href="https://ultiga.github.io/SNS_Agro/Report.html" target="_blank" rel="noopener">Reporting</a>
-          <a class="admin-link" href="https://ultiga.github.io/SNS_Agro/Report.html" rel="noopener">Click to Open</a>
+          <a class="title-link" href="https://ultiga.github.io/SNS_Agro/Report.html">Reporting</a>
+          <a class="admin-link" href="https://ultiga.github.io/SNS_Agro/Report.html">Click to Open</a>
         </div>
       </article>
 
-      
       <!-- Open/Edit Job Data -->
       <article class="item-card">
         <img src="edit.png" width="82" height="82" alt="Job Data">
         <div class="item-content">
-          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1nwUCnkVVr7Js7l0xDuieFmzYyxP1UOWaU2UerED5SN8/edit?usp=sharing" target="_blank" rel="noopener">Open/Edit Job Data</a>
-          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1nwUCnkVVr7Js7l0xDuieFmzYyxP1UOWaU2UerED5SN8/edit?usp=sharing" target="_blank" rel="noopener">Click to open</a>
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1nwUCnkVVr7Js7l0xDuieFmzYyxP1UOWaU2UerED5SN8/edit?usp=sharing">Open/Edit Job Data</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1nwUCnkVVr7Js7l0xDuieFmzYyxP1UOWaU2UerED5SN8/edit?usp=sharing">Click to open</a>
         </div>
       </article>
 
@@ -165,8 +195,8 @@
       <article class="item-card">
         <img src="emp.png" width="73" height="73" alt="Employee Data">
         <div class="item-content">
-          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1uplB8P24jLqcKOMHUYEevVhvWa6h1by7krrgpyuK4nY/edit?usp=sharing" target="_blank" rel="noopener">Open/Edit Emp Data</a>
-          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1uplB8P24jLqcKOMHUYEevVhvWa6h1by7krrgpyuK4nY/edit?usp=sharing" target="_blank" rel="noopener">Click to Open</a>
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1uplB8P24jLqcKOMHUYEevVhvWa6h1by7krrgpyuK4nY/edit?usp=sharing">Open/Edit Emp Data</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1uplB8P24jLqcKOMHUYEevVhvWa6h1by7krrgpyuK4nY/edit?usp=sharing">Click to Open</a>
         </div>
       </article>
 
@@ -174,19 +204,17 @@
       <article class="item-card">
         <img src="payroll.png" width="73" height="73" alt="Upah Data">
         <div class="item-content">
-          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1M0uDvPOld7sujvFT5p5XhYD8FWIM0r07JpUJfCP-MnQ/edit?usp=sharing" target="_blank" rel="noopener">Open/Edit Upah Data</a>
-          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1M0uDvPOld7sujvFT5p5XhYD8FWIM0r07JpUJfCP-MnQ/edit?usp=sharing" target="_blank" rel="noopener">Click to Open</a>
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1M0uDvPOld7sujvFT5p5XhYD8FWIM0r07JpUJfCP-MnQ/edit?usp=sharing">Open/Edit Upah Data</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1M0uDvPOld7sujvFT5p5XhYD8FWIM0r07JpUJfCP-MnQ/edit?usp=sharing">Click to Open</a>
         </div>
       </article>
 
-
-      
       <!-- Open/Edit Job Type -->
       <article class="item-card">
         <img src="edit1.png" width="54" height="54" alt="Job Type">
         <div class="item-content">
-          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1xyenjLEUoT-smBgtpKSy6QvJjDz8JbikQL_dyMVHvlA/edit?usp=sharing" target="_blank" rel="noopener">Open/Edit Job Type</a>
-          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1xyenjLEUoT-smBgtpKSy6QvJjDz8JbikQL_dyMVHvlA/edit?usp=sharing" target="_blank" rel="noopener">Click to Open</a>
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1xyenjLEUoT-smBgtpKSy6QvJjDz8JbikQL_dyMVHvlA/edit?usp=sharing">Open/Edit Job Type</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1xyenjLEUoT-smBgtpKSy6QvJjDz8JbikQL_dyMVHvlA/edit?usp=sharing">Click to Open</a>
         </div>
       </article>
 
@@ -194,8 +222,8 @@
       <article class="item-card">
         <img src="edit2.png" width="58" height="58" alt="Admin List">
         <div class="item-content">
-          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1zNBkZ5ihOWBnp-SJzqCUZTc7W6FmFPo6S864MnA9u30/edit?usp=sharing" target="_blank" rel="noopener">Open/Edit Admin List</a>
-          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1zNBkZ5ihOWBnp-SJzqCUZTc7W6FmFPo6S864MnA9u30/edit?usp=sharing" target="_blank" rel="noopener">Click to Open</a>
+          <a class="title-link" href="https://docs.google.com/spreadsheets/d/1zNBkZ5ihOWBnp-SJzqCUZTc7W6FmFPo6S864MnA9u30/edit?usp=sharing">Open/Edit Admin List</a>
+          <a class="admin-link" href="https://docs.google.com/spreadsheets/d/1zNBkZ5ihOWBnp-SJzqCUZTc7W6FmFPo6S864MnA9u30/edit?usp=sharing">Click to Open</a>
         </div>
       </article>
 
@@ -203,8 +231,8 @@
       <article class="item-card">
         <img src="print.jpeg" width="71" height="71" alt="Print">
         <div class="item-content">
-          <a class="title-link" href="https://ultiga.github.io/" target="_blank" rel="noopener">Printing</a>
-          <a class="admin-link" href="https://ultiga.github.io/" target="_blank" rel="noopener">Click to Open</a>
+          <a class="title-link" href="https://ultiga.github.io/">Printing</a>
+          <a class="admin-link" href="https://ultiga.github.io/">Click to Open</a>
         </div>
       </article>
     </section>
