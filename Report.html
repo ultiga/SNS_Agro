@@ -71,6 +71,14 @@
       color: #ccc;
     }
 
+    .header-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
     .report-list {
       display: flex;
       flex-direction: column;
@@ -115,8 +123,8 @@
       filter: brightness(1.2);
     }
 
-    /* Optional Fullscreen Button */
-    .fullscreen-btn {
+    /* Action Buttons */
+    .header-btn {
       background: #1e1e1e;
       border: 1px solid #333;
       color: #aaa;
@@ -124,10 +132,18 @@
       border-radius: 6px;
       font-size: 0.8rem;
       cursor: pointer;
-      margin-top: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: background-color 0.2s, color 0.2s;
     }
 
-    .fullscreen-btn:active {
+    .header-btn:hover {
+      background: #282828;
+      color: #fff;
+    }
+
+    .header-btn:active {
       background: #2a2a2a;
     }
   </style>
@@ -139,7 +155,10 @@
       <img src="Logo.jpeg" alt="SNS Agro Enterprise Logo">
       <h1>SNS Agro Enterprise Entry System</h1>
       <h2>Reporting Menu</h2>
-      <button class="fullscreen-btn" onclick="toggleFullScreen()">⛶ Fullscreen Mode</button>
+      <div class="header-actions">
+        <button class="header-btn" onclick="goBack()">← Back</button>
+        <button class="header-btn" onclick="toggleFullScreen()">⛶ Fullscreen Mode</button>
+      </div>
     </header>
 
     <section class="report-list">
@@ -171,6 +190,14 @@
   </main>
 
   <script>
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "index.html"; // Change to your main menu URL if necessary
+      }
+    }
+
     function toggleFullScreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(err => {
